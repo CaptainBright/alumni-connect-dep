@@ -9,8 +9,9 @@ const app = express();
 app.use(express.json());
 app.use(cookieParser());
 
+const corsOrigin = (process.env.CORS_ORIGIN || 'http://localhost:5173').replace(/\/+$/, '');
 app.use(cors({
-    origin: process.env.CORS_ORIGIN || 'http://localhost:5173', // Your Vite frontend
+    origin: corsOrigin,
     credentials: true,               // MUST be true for cookies
     methods: ['GET', 'POST', 'PUT', 'DELETE'],
 }));
